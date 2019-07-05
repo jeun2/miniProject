@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="booksDAO">
+	<select id="list" resultType="booksVO">
+		SELECT * FROM BOOKS ORDER BY num
+	</select>
+	
+	<select id="select" parameterType="int" resultType="booksVO">
+		SELECT * FROM BOOKS WHERE num = #{num}
+	</select>
+	
+	<insert id="insert" parameterType="booksVO">
+		INSERT INTO BOOKS
+		VALUES (BOOKS_SEQ.nextval, #{isbn}, #{name}, #{writer}, #{charge}, #{pub}, #{content}, #{imgname})
+	</insert>
+	
+	<select id="search" parameterType="string" resultType="booksVO">
+		SELECT * FROM BOOKS WHERE NAME like '%'||#{keyword}||'%' OR WRITER like '%'||#{keyword}||'%'
+	</select>
+	
+	
+	
+</mapper>
